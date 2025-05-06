@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebApp1.Models.tb_user>
+
+@{
+    ViewBag.Title = "User";
+}
+
+<h2>User</h2>
+
+<p>
+    @Html.ActionLink("Create New User", "Create", null, new { @class = "btn btn-primary my-2" })
+</p>
+<table class="table table-hover">
+    <thead class="table-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.firstname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lastname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.username)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.firstname)
+            </td>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.lastname)
+            </td>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.username)
+            </td>
+            <td class="align-middle">
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-dark ms-1" })
+                @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-dark ms-1" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-dark ms-1" })
+            </td>
+        </tr>
+
+    }
+
+</table>

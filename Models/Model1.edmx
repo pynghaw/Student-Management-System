@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_smsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_batch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="batch" Type="varchar" MaxLength="50" />
+          <Property Name="year" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tb_course">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="course" Type="varchar" MaxLength="50" />
+          <Property Name="duration" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_registration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="nic" Type="varchar" MaxLength="50" />
+          <Property Name="course_id" Type="int" />
+          <Property Name="batch_id" Type="int" />
+          <Property Name="telno" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_tb_registration_tb_batch">
+          <End Role="tb_batch" Type="Self.tb_batch" Multiplicity="0..1" />
+          <End Role="tb_registration" Type="Self.tb_registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_batch">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tb_registration">
+              <PropertyRef Name="batch_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_registration_tb_course">
+          <End Role="tb_course" Type="Self.tb_course" Multiplicity="0..1" />
+          <End Role="tb_registration" Type="Self.tb_registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_course">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tb_registration">
+              <PropertyRef Name="course_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_smsModelStoreContainer">
+          <EntitySet Name="tb_batch" EntityType="Self.tb_batch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_course" EntityType="Self.tb_course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_registration" EntityType="Self.tb_registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_user" EntityType="Self.tb_user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tb_registration_tb_batch" Association="Self.FK_tb_registration_tb_batch">
+            <End Role="tb_batch" EntitySet="tb_batch" />
+            <End Role="tb_registration" EntitySet="tb_registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_registration_tb_course" Association="Self.FK_tb_registration_tb_course">
+            <End Role="tb_course" EntitySet="tb_course" />
+            <End Role="tb_registration" EntitySet="tb_registration" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_smsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_batch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="batch" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_registration" Relationship="Self.FK_tb_registration_tb_batch" FromRole="tb_batch" ToRole="tb_registration" />
+        </EntityType>
+        <EntityType Name="tb_course">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="course" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="duration" Type="Int32" />
+          <NavigationProperty Name="tb_registration" Relationship="Self.FK_tb_registration_tb_course" FromRole="tb_course" ToRole="tb_registration" />
+        </EntityType>
+        <EntityType Name="tb_registration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="course_id" Type="Int32" />
+          <Property Name="batch_id" Type="Int32" />
+          <Property Name="telno" Type="Int32" />
+          <NavigationProperty Name="tb_batch" Relationship="Self.FK_tb_registration_tb_batch" FromRole="tb_registration" ToRole="tb_batch" />
+          <NavigationProperty Name="tb_course" Relationship="Self.FK_tb_registration_tb_course" FromRole="tb_registration" ToRole="tb_course" />
+        </EntityType>
+        <EntityType Name="tb_user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_tb_registration_tb_batch">
+          <End Role="tb_batch" Type="Self.tb_batch" Multiplicity="0..1" />
+          <End Role="tb_registration" Type="Self.tb_registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_batch">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tb_registration">
+              <PropertyRef Name="batch_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_registration_tb_course">
+          <End Role="tb_course" Type="Self.tb_course" Multiplicity="0..1" />
+          <End Role="tb_registration" Type="Self.tb_registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_course">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tb_registration">
+              <PropertyRef Name="course_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_smsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_batch" EntityType="Self.tb_batch" />
+          <EntitySet Name="tb_course" EntityType="Self.tb_course" />
+          <EntitySet Name="tb_registration" EntityType="Self.tb_registration" />
+          <EntitySet Name="tb_user" EntityType="Self.tb_user" />
+          <AssociationSet Name="FK_tb_registration_tb_batch" Association="Self.FK_tb_registration_tb_batch">
+            <End Role="tb_batch" EntitySet="tb_batch" />
+            <End Role="tb_registration" EntitySet="tb_registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_registration_tb_course" Association="Self.FK_tb_registration_tb_course">
+            <End Role="tb_course" EntitySet="tb_course" />
+            <End Role="tb_registration" EntitySet="tb_registration" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_smsModelStoreContainer" CdmEntityContainer="db_smsEntities">
+          <EntitySetMapping Name="tb_batch">
+            <EntityTypeMapping TypeName="db_smsModel.tb_batch">
+              <MappingFragment StoreEntitySet="tb_batch">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="batch" ColumnName="batch" />
+                <ScalarProperty Name="year" ColumnName="year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_course">
+            <EntityTypeMapping TypeName="db_smsModel.tb_course">
+              <MappingFragment StoreEntitySet="tb_course">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="course" ColumnName="course" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_registration">
+            <EntityTypeMapping TypeName="db_smsModel.tb_registration">
+              <MappingFragment StoreEntitySet="tb_registration">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="nic" ColumnName="nic" />
+                <ScalarProperty Name="course_id" ColumnName="course_id" />
+                <ScalarProperty Name="batch_id" ColumnName="batch_id" />
+                <ScalarProperty Name="telno" ColumnName="telno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_user">
+            <EntityTypeMapping TypeName="db_smsModel.tb_user">
+              <MappingFragment StoreEntitySet="tb_user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

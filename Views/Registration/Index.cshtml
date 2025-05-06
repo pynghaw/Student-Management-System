@@ -1,0 +1,68 @@
+﻿@model IEnumerable<WebApp1.Models.tb_registration>
+
+@{
+    ViewBag.Title = "Registration";
+}
+
+<h2>Registration Page</h2><br />
+<p>Enroll courses here!</p>
+
+<p>
+    @Html.ActionLink("Register Course", "Create", null, new { @class = "btn btn-primary my-2" })
+</p>
+<table class="table table-hover">
+    <thead class="table-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.firstname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lastname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tb_batch.batch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tb_course.course)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.firstname)
+            </td>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.lastname)
+            </td>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.nic)
+            </td>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.telno)
+            </td>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.tb_batch.batch)
+            </td>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.tb_course.course)
+            </td>
+            <td class="align-middle">
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-dark ms-1" })
+                @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-dark ms-1" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-dark ms-1" })
+            </td>
+        </tr>
+
+    }
+
+</table>
