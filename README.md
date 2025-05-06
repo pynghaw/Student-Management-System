@@ -19,7 +19,32 @@ This is a simple Student Management System built with ASP.NET MVC (.NET Framewor
 - Bootstrap 5  
 - Visual Studio 2022
 
+## Page View
 
+#### Home Page (Before Login)
+![Home Page](screenshots/homebefore.png)
+
+#### Login Page
+![Login Page](screenshots/login.png)
+
+#### Home Page (After Login)
+![Home Page](screenshots/homeafter.png)
+
+#### Course, Batch, Registration and User Page
+![Course Page](screenshots/course.png)
+
+![Batch Page](screenshots/batch.png)
+
+![Registration Page](screenshots/registration.png)
+
+![User Page](screenshots/user.png)
+
+#### Edit, Details and Delete Page (Registration)
+![Edit Registration ](screenshots/editregistration.png)
+
+![Registration Details ](screenshots/detailsregistration.png)
+
+![Delete Registration](screenshots/deleteregistration.png)
 
 
 
