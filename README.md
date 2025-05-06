@@ -30,10 +30,9 @@ This is a simple Student Management System built with ASP.NET MVC (.NET Framewor
 #### Home Page (After Login)
 ![Home Page](screenshots/homeafter.png)
 
-#### Course, Batch, Registration and User Page
+#### Course, Registration and User Page
 ![Course Page](screenshots/course.png)
 
-![Batch Page](screenshots/batch.png)
 
 ![Registration Page](screenshots/registration.png)
 
