@@ -1,7 +1,7 @@
 
 # Student Management System (.NET MVC)
 
-This is a simple Student Management System built with ASP.NET MVC (.NET Framework) as part of an individual assignment.
+This is a simple Student Management System built with ASP.NET MVC (.NET Framework).
 
 ## Features
 
