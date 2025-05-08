@@ -19,6 +19,9 @@ This is a simple Student Management System built with ASP.NET MVC (.NET Framewor
 - Bootstrap 5  
 - Visual Studio 2022
 
+## Database
+![Database](screenshots/database.png)
+
 ## Page View
 
 #### Home Page (Before Login)
